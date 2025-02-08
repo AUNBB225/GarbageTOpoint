@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files (เช่น Bootstrap, images)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 // เพิ่ม route สำหรับหน้าแรก
 app.get('/', (req, res) => {
   res.render('index');
@@ -111,6 +111,7 @@ app.post('/register', async (req, res) => {
 
 
 // ตรวจสอบการล็อกอิน
+// แก้ไขส่วนตรวจสอบการล็อกอิน
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -120,14 +121,26 @@ app.post('/login', async (req, res) => {
 
     if (result.rows.length > 0) {
       // เก็บข้อมูลผู้ใช้ใน session
-      req.session.user = { id: result.rows[0].id, username: result.rows[0].username, email, phone: result.rows[0].phone };
+      req.session.user = { 
+        id: result.rows[0].id, 
+        username: result.rows[0].username, 
+        email,
+        phone: result.rows[0].phone 
+      };
       res.redirect('/home');
     } else {
-      res.send('Invalid login');
+      // กรณีล็อกอินไม่สำเร็จ
+      res.render('login', { 
+        error: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+        email: email // ส่งค่ากลับไปแสดงในฟอร์ม
+      });
     }
   } catch (err) {
-    console.error(err);
-    res.send('Error logging in');
+    console.error('Error during login:', err);
+    res.render('login', { 
+      error: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง',
+      email: email
+    });
   }
 });
 

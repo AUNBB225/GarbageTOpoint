@@ -1,74 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garbage to Point API</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .endpoint {
-            background: #f4f4f4;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        code {
-            background: #e0e0e0;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-    </style>
+    <title>ขยะแลกแต้ม - แลกขยะเป็นคะแนน</title>
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Garbage to Point API</h1>
-    <p>Welcome to the Garbage to Point API service. Below are the available endpoints:</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="bi bi-recycle me-2"></i>
+                <span>ขยะแลกแต้ม</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">คุณสมบัติ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">วิธีใช้งาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">ติดต่อ</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary" href="/login">เข้าสู่ระบบ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="endpoint">
-        <h3>Test Connection</h3>
-        <p>Endpoint: <code>GET /api/test</code></p>
-        <p>Use this endpoint to test if the API is working.</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container text-center text-white">
+            <h1 class="display-2 fw-bold mb-4" data-aos="fade-up">เปลี่ยนขยะให้เป็นคะแนน</h1>
+            <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
+                ร่วมเป็นส่วนหนึ่งในการรักษาสิ่งแวดล้อมไปกับเรา พร้อมรับสิทธิประโยชน์มากมาย
+            </p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="/register" class="btn btn-light btn-lg me-3">
+                    <i class="bi bi-person-plus me-2"></i>เริ่มต้นใช้งาน
+                </a>
+                <a href="#features" class="btn btn-outline-light btn-lg">
+                    <i class="bi bi-arrow-down me-2"></i>เรียนรู้เพิ่มเติม
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-6 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5" data-aos="fade-up">ทำไมต้องขยะแลกแต้ม?</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-card text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-gift fs-2"></i>
+                        </div>
+                        <h3>รับแต้มสะสม</h3>
+                        <p>แลกขยะรีไซเคิลเป็นคะแนน สะสมแต้มเพื่อแลกของรางวัลมากมาย</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-tree fs-2"></i>
+                        </div>
+                        <h3>รักษาสิ่งแวดล้อม</h3>
+                        <p>ช่วยลดปริมาณขยะและรักษาสิ่งแวดล้อมไปด้วยกัน</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-heart fs-2"></i>
+                        </div>
+                        <h3>สร้างจิตสำนึก</h3>
+                        <p>ปลูกฝังการคัดแยกขยะและการรีไซเคิลให้เป็นส่วนหนึ่งของชีวิต</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section py-5 text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6" data-aos="fade-up">
+                    <div class="counter-box">
+                        <h2 class="counter" data-target="50000">0</h2>
+                        <p style="color: black;">สมาชิก</p> 
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="counter-box">
+                        <h2 class="counter" data-target="100000">0</h2>
+                        <p style="color: black;">ขยะที่ถูกทิ้ง(ชิ้น)</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="counter-box">
+                        <h2 class="counter" data-target="200">0</h2>
+                        <p style="color: black;">จุดรับแลก</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="counter-box">
+                        <h2 class="counter" data-target="1000000">0</h2>
+                        <p style="color: black;">แต้มที่แลกไปแล้ว</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-6">
+        <div class="container py-5">
+            <h2 class="text-center mb-5" data-aos="fade-up">วิธีการใช้งาน</h2>
+            <div class="row steps g-4">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="step text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-person-plus fs-2"></i>
+                        </div>
+                        <h3>ลงทะเบียน</h3>
+                        <p>สมัครสมาชิกด้วยเบอร์โทรศัพท์ของคุณ</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-arrow-repeat fs-2"></i>
+                        </div>
+                        <h3>นำขยะมาแลก</h3>
+                        <p>นำขยะรีไซเคิลมาที่จุดรับแลกภายในโรงเรียน</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-star fs-2"></i>
+                        </div>
+                        <h3>รับแต้มสะสม</h3>
+                        <p>รับแต้มสะสมตามจำนวนหนักขยะ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-6 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5" data-aos="fade-up">ติดต่อเรา</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm" class="contact-form" data-aos="fade-up">
+                        <div class="mb-3">
+                            <label class="form-label">ชื่อ</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">อีเมล</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ข้อความ</label>
+                            <textarea class="form-control" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-send me-2"></i>ส่งข้อความ
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Contact Button -->
+    <div class="floating-contact">
+        <button class="btn btn-primary rounded-circle btnmassage " data-bs-toggle="tooltip" title="ติดต่อเรา">
+            <i class="bi bi-chat-dots fs-4"></i>
+        </button>
     </div>
 
-    <div class="endpoint">
-        <h3>Verify Phone</h3>
-        <p>Endpoint: <code>POST /api/verify-phone</code></p>
-        <p>Request Body:</p>
-        <pre><code>{
-    "phone": "0812345678"
-}</code></pre>
-    </div>
-
-    <div class="endpoint">
-        <h3>Record Points</h3>
-        <p>Endpoint: <code>POST /api/record-points</code></p>
-        <p>Request Body:</p>
-        <pre><code>{
-    "phone": "0812345678",
-    "count": 5
-}</code></pre>
-    </div>
-
-    <footer>
-        <p>Status: <span id="status">Checking...</span></p>
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h4 class="mb-4">ขยะแลกแต้ม</h4>
+                    <p>ร่วมเป็นส่วนหนึ่งในการรักษาสิ่งแวดล้อมไปกับเรา</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="mb-4">ติดต่อเรา</h4>
+                    <p><i class="bi bi-envelope me-2"></i> contact@example.com</p>
+                    <p><i class="bi bi-telephone me-2"></i> 02-xxx-xxxx</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="mb-4">ติดตามเรา</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-line"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 ขยะแลกแต้ม. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        // ทดสอบการเชื่อมต่อ API
-        fetch('/api/test')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('status').textContent = 
-                    data.status === 'success' ? '🟢 API is working' : '🔴 API error';
-            })
-            .catch(() => {
-                document.getElementById('status').textContent = '🔴 API error';
-            });
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
