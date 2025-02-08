@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage to Point API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .endpoint {
+            background: #f4f4f4;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        code {
+            background: #e0e0e0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Garbage to Point API</h1>
+    <p>Welcome to the Garbage to Point API service. Below are the available endpoints:</p>
+
+    <div class="endpoint">
+        <h3>Test Connection</h3>
+        <p>Endpoint: <code>GET /api/test</code></p>
+        <p>Use this endpoint to test if the API is working.</p>
+    </div>
+
+    <div class="endpoint">
+        <h3>Verify Phone</h3>
+        <p>Endpoint: <code>POST /api/verify-phone</code></p>
+        <p>Request Body:</p>
+        <pre><code>{
+    "phone": "0812345678"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>Record Points</h3>
+        <p>Endpoint: <code>POST /api/record-points</code></p>
+        <p>Request Body:</p>
+        <pre><code>{
+    "phone": "0812345678",
+    "count": 5
+}</code></pre>
+    </div>
+
+    <footer>
+        <p>Status: <span id="status">Checking...</span></p>
+    </footer>
+
+    <script>
+        // ทดสอบการเชื่อมต่อ API
+        fetch('/api/test')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').textContent = 
+                    data.status === 'success' ? '🟢 API is working' : '🔴 API error';
+            })
+            .catch(() => {
+                document.getElementById('status').textContent = '🔴 API error';
+            });
+    </script>
+</body>
+</html>

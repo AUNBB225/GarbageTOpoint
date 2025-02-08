@@ -24,7 +24,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Static files (เช่น Bootstrap, images)
 app.use(express.static(path.join(__dirname, 'public')));
-
+// เพิ่ม route สำหรับหน้าแรก
+app.get('/', (req, res) => {
+  res.render('index');
+});
 // ตั้งค่าการเชื่อมต่อกับฐานข้อมูล Supabase
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
